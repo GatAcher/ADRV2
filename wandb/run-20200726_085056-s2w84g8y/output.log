@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "smartACL_BatchSizeSweep.py", line 420, in <module>
+    training = PPOtraining(quad_env.QuadEnv, 2000000, np.array([0.5,0.5]), np.array([1,1]), 0.02, learningRate = wandb.config.learningRate, batchSize = wandb.config.batchSize, startDomain=np.array([0.5,0.5]), endDomain = np.array([0.5,0.5]), ADRMethod = 'loss', targetReliability=None, targetReward=None, initModelLoc=None, render = False, verbose = 1)
+  File "smartACL_BatchSizeSweep.py", line 352, in __init__
+    self.updateEnv(self.curriculum)
+  File "smartACL_BatchSizeSweep.py", line 382, in updateEnv
+    self.env = self.envFunct(initCurriculum)
+  File "/home/gorgsss/Desktop/Dissertation/QuadADR/gym_smartquad/envs/quad_env.py", line 89, in __init__
+    self.defineFriction(newFriction)
+  File "/home/gorgsss/Desktop/Dissertation/QuadADR/gym_smartquad/envs/quad_env.py", line 118, in defineFriction
+    tree = ET.parse(self.xml_path)
+  File "/usr/lib/python3.8/xml/etree/ElementTree.py", line 1202, in parse
+    tree.parse(source, parser)
+  File "/usr/lib/python3.8/xml/etree/ElementTree.py", line 595, in parse
+    self._root = parser._parse_whole(source)
+  File "<string>", line None
+xml.etree.ElementTree.ParseError: no element found: line 1, column 0

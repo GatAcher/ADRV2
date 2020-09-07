@@ -1,0 +1,45 @@
+/home/gorgsss/.local/lib/python3.8/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+Using cuda device
+Logging to ./logger/PPO_48
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 5e+03    |
+|    ep_rew_mean     | -6.35    |
+| time/              |          |
+|    fps             | 850      |
+|    iterations      | 1        |
+|    time_elapsed    | 19       |
+|    total_timesteps | 16384    |
+| train/             |          |
+|    average_reward  | -6.35    |
+---------------------------------
+Traceback (most recent call last):
+  File "smartACL_BatchSizeSweep.py", line 420, in <module>
+    training = PPOtraining(quad_env.QuadEnv, 2000000, np.array([0.5,0.5]), np.array([1,1]), 0.02, learningRate = wandb.config.learningRate, batchSize = wandb.config.batchSize, startDomain=np.array([0.5,0.5]), endDomain = np.array([0.5,0.5]), ADRMethod = 'loss', targetReliability=None, targetReward=None, initModelLoc=None, render = False, verbose = 1)
+  File "smartACL_BatchSizeSweep.py", line 354, in __init__
+    self.train()
+  File "smartACL_BatchSizeSweep.py", line 370, in train
+    self.model.learn(total_timesteps=self.step_total,log_interval=1, tb_log_name="PPO",callback=callbackFunction)
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/stable_baselines3/ppo/ppo.py", line 238, in learn
+    return super(PPO, self).learn(total_timesteps=total_timesteps, callback=callback,
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 192, in learn
+    continue_training = self.collect_rollouts(self.env, callback,
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/stable_baselines3/common/on_policy_algorithm.py", line 144, in collect_rollouts
+    new_obs, rewards, dones, infos = env.step(clipped_actions)
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/stable_baselines3/common/vec_env/base_vec_env.py", line 163, in step
+    return self.step_wait()
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 44, in step_wait
+    self.envs[env_idx].step(self.actions[env_idx])
+  File "/home/gorgsss/Desktop/Dissertation/QuadADR/customMonitor.py", line 79, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/gorgsss/Desktop/Dissertation/QuadADR/gym_smartquad/envs/quad_env.py", line 146, in step
+    self.do_simulation(a, self.frame_skip)
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/gym/envs/mujoco/mujoco_env.py", line 125, in do_simulation
+    self.sim.step()
+  File "mjsim.pyx", line 126, in mujoco_py.cymj.MjSim.step
+  File "cymj.pyx", line 156, in mujoco_py.cymj.wrap_mujoco_warning.__exit__
+  File "cymj.pyx", line 77, in mujoco_py.cymj.c_warning_callback
+  File "/home/gorgsss/.local/lib/python3.8/site-packages/mujoco_py/builder.py", line 363, in user_warning_raise_exception
+    raise MujocoException(warn + 'Check for NaN in simulation.')
+mujoco_py.builder.MujocoException: Unknown warning type Time = 138.8000.Check for NaN in simulation.
